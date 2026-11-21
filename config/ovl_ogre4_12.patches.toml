@@ -1,0 +1,7 @@
+# Instruction patches of ovl_ogre4_12 (OGRE4.CVM module 12), appended to its overlay config by pipeline.sh.
+# [Yakuza Restored 1.0]: the patch turns one mul.s into a no-op (0x6849ac, mul.s $f0,$f1,$f0 -> 0x24000802 =
+# addiu $zero,$zero,0x802). Switch "restored", see ovl_main.patches.toml.
+[patches]
+instructions = [
+  { address = "0x006849ac", value = "0x24000802", switch = "restored" },
+]

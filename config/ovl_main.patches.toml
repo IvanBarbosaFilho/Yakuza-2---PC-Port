@@ -1,0 +1,19 @@
+# Instruction patches of ovl_main (MAIN.BIN, the game code), appended to its overlay config by pipeline.sh.
+#
+# [60 FPS], PS2X_FPS60=1 (./play.sh fps60). The game object (*0x1572a0) holds the frame interval in vsyncs:
+#   +0x2120 requested (scenes and mission scripts set it: missioncmd.cpp 0x2f63d0, 1 in a few modes, 2 in play),
+#   +0x211c current, copied from +0x2120 each frame at 0x29dc88; the pacer FUN_00239200(obj, interval) waits
+#   for it (and drops logic frames when late), and the same code derives the time scale the game logic reads
+#   (+0x2124 = 1.0 at 2 vsyncs, 0.5 at 1; +0x2128 its square, 1.0 / 0.25; getter 0x29db70).
+# The engine already runs some modes at 1 vsync with that scale, so the patch only makes the copy read 1:
+#   lw $v0,0x2120($s0) -> addiu $v0,$zero,1.
+[patches]
+instructions = [
+  { address = "0x0029dc88", value = "0x24020001", switch = "fps60run" }, # fps60 outside cutscenes: mods/yakuza_shoulder_camera.cpp
+  # [Yakuza Restored 1.0] (fan patch: Japanese audio, revised script; the player brings it, see package/LEIA-ME.txt)
+  # changes three instructions of MAIN.BIN; the rest of its changes are text and pointer tables, read from the disc.
+  # Switch "restored" (PS2X_RESTORED=1), turned on by mods/yakuza_restored.cpp when the disc's MAIN.BIN is patched.
+  { address = "0x0025605c", value = "0x2e0212de", switch = "restored" },  # sltiu $v0,$s0,4830 (was 4813): more lines
+  { address = "0x00374b88", value = "0x3c0243c4", switch = "restored" },  # lui 0x43c4 = 392.0 (was 404): subtitles higher
+  { address = "0x00374bcc", value = "0x3c0243b7", switch = "restored" },  # lui 0x43b7 (was 0x43c3)
+]
