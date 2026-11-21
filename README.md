@@ -19,12 +19,12 @@
 ---
 
 > [!IMPORTANT]
-> The game is **not included**. You need **your own copy** of Yakuza for the PS2 (USA, `SLUS-21348`) as a disc
+> The game is **not included**. You need **your own copy** of Yakuza 2 for the PS2 (USA, `SLUS-21348`) as a disc
 > image (`.iso`).
 
 ## What is this?
 
-A PC port of *Yakuza* made by **static recompilation**: the game's PS2 code was translated into C++ and compiled as a
+A PC port of *Yakuza 2* made by **static recompilation**: the game's PS2 code was translated into C++ and compiled as a
 Windows program, instead of being emulated. The graphics use PCSX2's renderer (DirectX 11), so you get high internal
 resolutions and a sharp picture.
 
@@ -41,7 +41,7 @@ resolutions and a sharp picture.
 
 1. Download the ZIP from the [**latest release**](../../releases/latest) and extract it anywhere.
 2. Open **`Yakuza.exe`**.
-3. The first time, pick your Yakuza disc image (`.iso`). The game checks it is the right one and remembers it
+3. The first time, pick your Yakuza 2 disc image (`.iso`). The game checks it is the right one and remembers it
    (in `Yakuza.ini`): from then on, just open `Yakuza.exe`.
 
 If you move the `.iso`, the game asks for it again. Saves are in `memcard0.ps2`, options in `config\mods.ini`, and
