@@ -1,6 +1,6 @@
 <div align="center">
 
-# Yakuza — PC Port
+# Yakuza 2 — PC Port
 
 **English** · [Português (Brasil)](README.pt-BR.md)
 
